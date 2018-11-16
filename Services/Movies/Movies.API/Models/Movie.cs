@@ -11,7 +11,7 @@ namespace Movies.API.Models
         public string Plot { get; set; }
         public string Poster { get; set; }
 
-        public ICollection<Actor> Actors { get; set; }
-        public Producer Producer { get; set; }
+        //public ICollection<Actor> Actors { get; set; }
+        //public Producer Producer { get; set; }
     }
 }

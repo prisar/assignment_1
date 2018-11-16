@@ -26,24 +26,21 @@ namespace Movies.API
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureDevelopmentServices(IServiceCollection services)
-        {
-            // use in-memory database
-            ConfigureInMemoryDatabases(services);
-        }
-
-        private void ConfigureInMemoryDatabases(IServiceCollection services)
-        {
-            // use in-memory database
-            services.AddDbContext<MoviesContext>(c =>
-            c.UseInMemoryDatabase("MoviesDb"));
-
-            ConfigureServices(services);
-        }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // use in-memory database
+            services.AddDbContext<MoviesContext>(opt => opt.UseInMemoryDatabase("MoviesDb"));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Movies API", Version = "v1" });
@@ -66,6 +63,10 @@ namespace Movies.API
                 app.UseHsts();
             }
 
+            //AddTestData(context);
+
+            app.UseCors("CorsPolicy");
+
             app.UseHttpsRedirection();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -82,6 +83,19 @@ namespace Movies.API
             app.UseStaticFiles();
 
             app.UseMvc();
+        }
+
+        private void AddTestData(MoviesContext context)
+        {
+            var movie1 = new Movie
+            {
+                Id = 1,
+                Name = "Batman"
+            };
+
+            context.Movies.Add(movie1);
+
+            context.SaveChanges();
         }
     }
 }

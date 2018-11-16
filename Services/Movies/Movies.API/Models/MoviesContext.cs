@@ -14,11 +14,11 @@ namespace Movies.API.Models
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Producer> Producers { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<Actor>(ConfigureActor);
-            builder.Entity<Movie>(ConfigureMovie);
-            builder.Entity<Producer>(ConfigureProducer);
+            modelBuilder.Entity<Actor>(ConfigureActor);
+            modelBuilder.Entity<Movie>(ConfigureMovie);
+            modelBuilder.Entity<Producer>(ConfigureProducer);
         }
 
         private void ConfigureActor(EntityTypeBuilder<Actor> builder)

@@ -10,6 +10,6 @@ namespace Movies.API.Models
         public string DOB { get; set; }
         public string Bio { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        //public ICollection<Movie> Movies { get; set; }
     }
 }

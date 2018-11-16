@@ -11,6 +11,6 @@ namespace Movies.API.Models
         public DateTime DOB { get; set; }
         public string Bio { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        //public ICollection<Movie> Movies { get; set; }
     }
 }
