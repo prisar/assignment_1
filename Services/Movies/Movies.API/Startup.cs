@@ -43,7 +43,13 @@ namespace Movies.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Movies API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info 
+                { 
+                    Title = "Movies API", 
+                    Version = "v1",
+                    Description = "The Movie Microservice HTTP API",
+                    TermsOfService = "Terms Of Service"
+                });
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
