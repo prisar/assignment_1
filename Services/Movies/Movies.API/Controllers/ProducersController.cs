@@ -33,7 +33,7 @@ namespace Movies.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var result = _context.Producers.Select(m => m.Id == id).FirstOrDefault();
+            var result = _context.Producers.Where(m => m.Id == id).SingleOrDefault();
             return Ok(result);
         }
 

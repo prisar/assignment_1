@@ -31,7 +31,7 @@ namespace Movies.API.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var result = _context.Movies.Select(m => m.Id == id).FirstOrDefault();
+            var result = _context.Movies.Where(m => m.Id == id).SingleOrDefault();
             return Ok(result);
         }
 
@@ -102,7 +102,7 @@ namespace Movies.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(movie);
         }
 
         // DELETE api/values/5
