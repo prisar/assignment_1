@@ -20,7 +20,7 @@ export default function configureStore(history, initialState) {
   // In development, use the browser's Redux dev tools extension if installed
   const enhancers = [];
   const isDevelopment = process.env.NODE_ENV === 'development';
-  if (isDevelopment && typeof window !== 'undefined' && window.devToolsExtension) {
+  if (isDevelopment && typeof window !== 'undefined' && window.devToolsExtension) { // TODO : resolve depercation warning
     enhancers.push(window.devToolsExtension());
   }
 
