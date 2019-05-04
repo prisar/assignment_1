@@ -18,6 +18,8 @@ class Movies extends Component {
     this.props.requestMovies("");
     this.state = {
       open: false,
+      edit_movie_index: 0,
+      make_movie_editable: false
     };
   }
 
